@@ -1,0 +1,13 @@
+name = input("Enter file:")
+if len(name) < 1 : name = "mbox-short.txt"
+handle = open(name)
+dic = dict()
+for line in handle:
+    lst_1=list()
+    if line.startswith("From "):
+        lst_1 = line.split()
+        string = lst_1[5]
+        lst_2 = string.split(":")
+        dic[lst_2[0]]=dic.get(lst_2[0],0)+1
+for k,v in sorted([(key,value) for key,value in dic.items()]):
+    print(k,v)
